@@ -1,40 +1,40 @@
 <!DOCTYPE HTML>
 <html>
 
-<head>
-	<title>Rider Shop</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="stylesheet" href="assets/css/override.css" />
-	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
-	</noscript>
-</head>
+<?php
+include("./html/head.html");
+?>
 
 <body class="is-preload">
 
 	<!-- Wrapper -->
 	<div id="wrapper">
 
-        <?php 
-            include("./html/header.html");
-        ?>
-		
+		<?php
+		include("./html/header.html");
+		?>
+
 		<!-- Banner -->
-		<section id="banner" class="major">
+		<section id="banner" class="major">			
 			<div class="inner">
-				<header class="major">					
-					<h1>Red Bull Contest</h1>
+				<?php
+				$event = json_decode(file_get_contents('event.json'), true);
+
+				if ($event['active']): ?>
+				<header class="major">
+					<h1><?php echo $event['title'] ?></h1>
 				</header>
+
 				<div class="divider"></div>
 				<div class="content">
-					<p>A responsive site template designed by HTML5 UP<br />
-						and released under the Creative Commons.</p>
+					<p>
+						<?php echo $event['desc'] ?>
+					</p>
 					<ul class="actions">
-						<li><a href="#one" class="button next scrolly">VAI ALL'EVENTO</a></li>
+						<li><a href="<?php echo $event['link'] ?>" class="button next scrolly">VAI ALL'EVENTO</a></li>
 					</ul>
 				</div>
+				<?php endif; ?>
 			</div>
 		</section>
 
@@ -57,7 +57,7 @@
 						<img src="images/snowboard/0.jpg" alt="" />
 					</span>
 					<header class="major">
-						<h3><a href="snowboard.html" class="link">Snowboard</a></h3>
+						<h3><a href="snowboard.php" class="link">Snowboard</a></h3>
 						<!-- <p>feugiat amet tempus</p> -->
 					</header>
 				</article>
@@ -105,27 +105,22 @@
 						<div class="contatti_wrapper">
 							<h3><span class="icon solid alt fa-home"></span> Address</h3>
 							<div class="contatti_text">
-								Via Comasina 26A, 20843 Verano Brianza MB						
+								Via Comasina 26A, 20843 Verano Brianza MB
 							</div>
 						</div>
 					</div>
 				</div>
 		</section>
 
-        <?php 
-            include("./html/footer.html");
-        ?>
+		<?php
+		include("./html/footer.html");
+		?>
 
 	</div>
 
-	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
+	<?php
+	include("./html/scripts.html");
+	?>
 
 </body>
 
