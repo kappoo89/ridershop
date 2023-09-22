@@ -19,11 +19,14 @@ include("./html/head.html");
 
 			<!-- One -->
 			<section id="one" class="tiles">
-				<?php
-					$path = './images/snowboard/*.jpg';					
-					$images = glob($path, GLOB_BRACE);
-					foreach($images as $image){					
-						print '<article><span class="image"><img src="'.$image.'" alt="" /></span></article>';								
+				<?php				
+					$type = $_GET['type'];
+					$path = './products/'.rawurldecode($type);					
+					$allImages = glob($path.'/*.jpg', GLOB_BRACE);
+					$images = array_diff($allImages, array($path.'/banner.jpg'));
+					if(count($images) < 1) header("location: /index.php");
+					foreach($images as $image){				
+						print '<article><span class="image"><img src="'.rawurlencode($image).'" alt="" /></span></article>';								
    					};				
 				?>				
 			</section>

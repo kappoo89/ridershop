@@ -43,42 +43,27 @@ include("./html/head.html");
 
 			<!-- One -->
 			<section id="one" class="tiles">
-				<article>
-					<span class="image">
-						<img src="images/a_0.jpg" alt="" />
-					</span>
-					<header class="major">
-						<h3><a href="snowboard.html" class="link">Abbigliamento</a></h3>
-						<!-- <p>Ipsum dolor sit amet</p> -->
-					</header>
-				</article>
-				<article>
-					<span class="image">
-						<img src="images/snowboard/0.jpg" alt="" />
-					</span>
-					<header class="major">
-						<h3><a href="snowboard.php" class="link">Snowboard</a></h3>
-						<!-- <p>feugiat amet tempus</p> -->
-					</header>
-				</article>
-				<article>
-					<span class="image">
-						<img src="images/bike/0.jpg" alt="" />
-					</span>
-					<header class="major">
-						<h3><a href="bike.html" class="link">Bike</a></h3>
-						<!-- <p>Lorem etiam nullam</p> -->
-					</header>
-				</article>
-				<article>
-					<span class="image">
-						<img src="images/sk_0.jpg" alt="" />
-					</span>
-					<header class="major">
-						<h3><a href="bike.html" class="link">Skate</a></h3>
-						<!-- <p>Nisl sed aliquam</p> -->
-					</header>
-				</article>
+
+				<?php
+					$path = './products/';						
+					$allFiles = scandir($path);
+					$files = array_diff($allFiles, array('.', '..'));
+					
+					foreach($files as $folder) {
+						if (!is_dir($folder)) {							
+    						print '
+							<article>
+								<span class="image">
+									<img src="products/'.rawurlencode($folder).'/banner.jpg" alt="" />
+								</span>
+								<header class="major">
+									<h3><a href="products.php?type='.$folder.'" class="link">'.$folder.'</a></h3>					
+								</header>
+							</article>
+							';								
+   						}
+					}								
+				?>					
 			</section>
 		</div>
 
