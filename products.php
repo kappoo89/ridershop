@@ -27,7 +27,7 @@ include("./html/head.html");
 					if(count($images) < 1) header("location: /index.php");
 					foreach($images as $image){				
 						print '<article><span class="image"><img src="'.rawurlencode($image).'" alt="" /></span></article>';								
-   					};				
+   					};			
 				?>				
 			</section>
 		</div>
